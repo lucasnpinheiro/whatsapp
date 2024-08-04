@@ -1,0 +1,34 @@
+{
+    "name": "lucasnpinheiro/whatsapp",
+    "description": "Uma biblioteca PHP para integrar com a API do Whatsapp",
+    "version": "1.0.0",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "LucasNPinheiro\\Whatsapp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LucasNPinheiro\\Whatsapp\\Tests\\": "tests/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas N. Pinheiro",
+            "email": "lucasnpinheiro@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "test": "phpunit --bootstrap vendor/autoload.php tests"
+    }
+}
