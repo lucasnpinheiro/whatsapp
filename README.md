@@ -3,7 +3,7 @@ Script para envio de mensagem via Whatsapp
 
 ## instalação
 ```bash
-composer lucasnpinheiro/whatsapp
+composer require lucasnpinheiro/whatsapp
 ```
 
 ## Exemplo de uso
