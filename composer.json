@@ -1,7 +1,6 @@
 {
     "name": "lucasnpinheiro/whatsapp",
     "description": "Uma biblioteca PHP para integrar com a API do Whatsapp",
-    "version": "1.0.4",
     "type": "library",
     "require": {
         "php": "^8.0",
