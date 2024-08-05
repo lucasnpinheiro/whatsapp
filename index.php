@@ -12,6 +12,6 @@ $filename = 'document.pdf';
 $caption = ''; // Informe a legenda da mensagem
 
 $whatsappSender = new WhatsAppSender($token, $phoneNumberId);
-$response = $whatsappSender->sendBoletoMessage($to, $documentUrl, $filename, $caption);
+$response = $whatsappSender->sendDocument($to, $documentUrl, $filename, $caption);
 
 echo $response;

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace LucasNPinheiro\Whatsapp;
@@ -7,36 +8,36 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 /**
- * Classe para enviar mensagens via API do WhatsApp usando a biblioteca Guzzle.
+ * Class to send messages via WhatsApp API using the Guzzle library.
  */
 class WhatsAppSender
 {
     /**
-     * Token de autenticação para a API do WhatsApp.
+     * Authentication token for the WhatsApp API.
      *
      * @var string
      */
     private $token;
 
     /**
-     * ID do número de telefone usado para enviar mensagens.
+     * ID of the phone number used to send messages.
      *
      * @var string
      */
     private $phoneNumberId;
 
     /**
-     * Instância do cliente HTTP Guzzle.
+     * Guzzle HTTP client instance.
      *
      * @var Client
      */
     private $client;
 
     /**
-     * Construtor da classe WhatsAppSender.
+     * WhatsAppSender class constructor.
      *
-     * @param string $token Token de autenticação para a API do WhatsApp.
-     * @param string $phoneNumberId ID do número de telefone usado para enviar mensagens.
+     * @param string $token Authentication token for the WhatsApp API.
+     * @param string $phoneNumberId ID of the phone number used to send messages.
      */
     public function __construct($token, $phoneNumberId)
     {
@@ -49,12 +50,12 @@ class WhatsAppSender
     }
 
     /**
-     * Envia uma mensagem de modelo para um número específico.
+     * Sends a template message to a specific number.
      *
-     * @param string $to Número do destinatário no formato internacional.
-     * @param string $templateName Nome do modelo a ser enviado.
-     * @param string $languageCode Código do idioma do modelo.
-     * @return string Resposta da API.
+     * @param string $to Recipient number in international format.
+     * @param string $templateName Name of the template to be sent.
+     * @param string $languageCode Template language code.
+     * @return string API response.
      */
     public function sendTemplateMessage($to, $templateName, $languageCode)
     {
@@ -75,38 +76,11 @@ class WhatsAppSender
     }
 
     /**
-     * Envia uma mensagem com um documento para um número específico.
+     * Sends a POST request to the WhatsApp API and handles exceptions.
      *
-     * @param string $to Número do destinatário no formato internacional.
-     * @param string $documentUrl URL do documento a ser enviado.
-     * @param string $filename Nome do arquivo do documento.
-     * @param string $caption (Opcional) Legenda para o documento.
-     * @return string Resposta da API.
-     */
-    public function sendBoletoMessage($to, $documentUrl, $filename, $caption = '')
-    {
-        $url = $this->phoneNumberId . '/messages';
-        $data = [
-            "messaging_product" => "whatsapp",
-            "recipient_type" => "individual",
-            "to" => $to,
-            "type" => "document",
-            "document" => [
-                "link" => $documentUrl,
-                "filename" => $filename,
-                "caption" => $caption
-            ]
-        ];
-
-        return $this->sendRequest($url, $data);
-    }
-
-    /**
-     * Envia uma requisição POST para a API do WhatsApp e trata as exceções.
-     *
-     * @param string $url URL do endpoint da API.
-     * @param array $data Dados da requisição.
-     * @return string Resposta da API ou mensagem de erro.
+     * @param string $url API endpoint URL.
+     * @param array $data Request data.
+     * @return string API response or error message.
      */
     private function sendRequest($url, array $data)
     {
@@ -127,5 +101,32 @@ class WhatsAppSender
                 return $e->getMessage();
             }
         }
+    }
+
+    /**
+     * Send a message with a document to a specific number.
+     *
+     * @param string $to Recipient number in international format.
+     * @param string $documentUrl URL of the document to be sent.
+     * @param string $filename Document file name.
+     * @param string $caption (Optional) Caption for the document.
+     * @return string API response.
+     */
+    public function sendDocument($to, $documentUrl, $filename, $caption = '')
+    {
+        $url = $this->phoneNumberId . '/messages';
+        $data = [
+            "messaging_product" => "whatsapp",
+            "recipient_type" => "individual",
+            "to" => $to,
+            "type" => "document",
+            "document" => [
+                "link" => $documentUrl,
+                "filename" => $filename,
+                "caption" => $caption
+            ]
+        ];
+
+        return $this->sendRequest($url, $data);
     }
 }

@@ -2,12 +2,11 @@
 
 namespace LucasNPinheiro\Whatsapp\Tests;
 
-use PHPUnit\Framework\TestCase;
-use LucasNPinheiro\Whatsapp\WhatsAppSender;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\RequestInterface;
+use LucasNPinheiro\Whatsapp\WhatsAppSender;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 class WhatsAppSenderTest extends TestCase
 {
@@ -39,8 +38,8 @@ class WhatsAppSenderTest extends TestCase
 
         $whatsappSender = new WhatsAppSender($token, $phoneNumberId);
 
-        // Use reflexão para definir a propriedade privada $client
-        $reflection = new \ReflectionClass($whatsappSender);
+        // Use reflection to set the $client private property
+        $reflection = new ReflectionClass($whatsappSender);
         $property = $reflection->getProperty('client');
         $property->setAccessible(true);
         $property->setValue($whatsappSender, $clientMock);
@@ -81,12 +80,12 @@ class WhatsAppSenderTest extends TestCase
         $whatsappSender = new WhatsAppSender($token, $phoneNumberId);
 
         // Use reflexão para definir a propriedade privada $client
-        $reflection = new \ReflectionClass($whatsappSender);
+        $reflection = new ReflectionClass($whatsappSender);
         $property = $reflection->getProperty('client');
         $property->setAccessible(true);
         $property->setValue($whatsappSender, $clientMock);
 
-        $response = $whatsappSender->sendBoletoMessage($to, $documentUrl, $filename, $caption);
+        $response = $whatsappSender->sendDocument($to, $documentUrl, $filename, $caption);
 
         $this->assertEquals('Success', $response);
     }
