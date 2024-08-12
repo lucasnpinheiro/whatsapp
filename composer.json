@@ -11,12 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LucasNPinheiro\\Whatsapp\\": "src/"
+            "Whatsapp\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LucasNPinheiro\\Whatsapp\\Tests\\": "tests/"
+            "Whatsapp\\Tests\\": "tests/"
         }
     },
     "license": "MIT",

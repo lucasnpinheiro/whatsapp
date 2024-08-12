@@ -13,7 +13,7 @@ composer require lucasnpinheiro/whatsapp
 
 require 'vendor/autoload.php';
 
-use LucasNPinheiro\Whatsapp\WhatsAppSender;
+use Whatsapp\WhatsAppSender;
 
 $token = ''; // Informe o token de autenticação
 $phoneNumberId = ''; // Informe o ID do número de telefone vinculado a sua conta do WhatsApp Business API

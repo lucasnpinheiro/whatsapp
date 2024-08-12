@@ -1,10 +1,10 @@
 <?php
 
-namespace LucasNPinheiro\Whatsapp\Tests;
+namespace Whatsapp\Tests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use LucasNPinheiro\Whatsapp\WhatsAppSender;
+use Whatsapp\WhatsAppSender;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
